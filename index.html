@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sevastiian — Senior Full-Stack Developer</title>
+    <meta name="description" content="Sevastiian — Senior Full-Stack Developer. C# / .NET стек. Backend, веб-сервисы, высоконагруженные системы." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <canvas id="bg-grid"></canvas>
+
+    <header class="nav">
+        <div class="logo">&lt;Sevastiian/&gt;</div>
+        <nav>
+            <a href="#about">about</a>
+            <a href="#skills">skills</a>
+            <a href="#donate">donate</a>
+            <a href="#contact">contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="glitch-wrap">
+                <h1 class="glitch" data-text="SEVASTIIAN">SEVASTIIAN</h1>
+            </div>
+            <p class="subtitle">// Senior Full-Stack Developer · C# / .NET stack</p>
+            <div class="hero-cta">
+                <a class="btn btn-primary" href="#contact">Связаться</a>
+                <a class="btn btn-ghost" href="#donate">Поддержать (USDT TRC20)</a>
+            </div>
+        </section>
+
+        <section id="about" class="section">
+            <h2 class="section-title"><span class="bracket">[</span> about <span class="bracket">]</span></h2>
+            <div class="card">
+                <p>
+                    Senior Full-Stack разработчик с фокусом на <span class="hl">C# / .NET</span>.
+                    Проектирую и пишу надёжные backend-системы, REST/gRPC API,
+                    интеграции и веб-приложения. Работаю от архитектуры до прод-деплоя:
+                    чистый код, понятные решения, измеримый результат.
+                </p>
+            </div>
+        </section>
+
+        <section id="skills" class="section">
+            <h2 class="section-title"><span class="bracket">[</span> skills <span class="bracket">]</span></h2>
+            <div class="skills-grid">
+                <div class="skill">C#</div>
+                <div class="skill">.NET / ASP.NET Core</div>
+                <div class="skill">Entity Framework</div>
+                <div class="skill">SQL / PostgreSQL</div>
+                <div class="skill">REST &amp; gRPC</div>
+                <div class="skill">Docker</div>
+                <div class="skill">CI/CD</div>
+                <div class="skill">Git</div>
+                <div class="skill">JavaScript</div>
+                <div class="skill">HTML / CSS</div>
+            </div>
+        </section>
+
+        <section id="donate" class="section">
+            <h2 class="section-title"><span class="bracket">[</span> donate <span class="bracket">]</span></h2>
+            <div class="card donate">
+                <p class="donate-label">USDT · TRC20 (TRON)</p>
+                <div class="wallet">
+                    <code id="wallet">TKasX7gvbdvg4nnJ8BzQ2TNWrKjXpieHau</code>
+                    <button id="copy-btn" class="btn btn-primary copy" type="button" aria-label="Скопировать адрес">copy</button>
+                </div>
+                <p class="warn">⚠ Отправляйте только USDT в сети TRC20. Перевод в другой сети приведёт к потере средств.</p>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <h2 class="section-title"><span class="bracket">[</span> contact <span class="bracket">]</span></h2>
+            <div class="contacts">
+                <a class="contact-card" href="mailto:katana118841@gmail.com">
+                    <span class="contact-key">email</span>
+                    <span class="contact-val">katana118841@gmail.com</span>
+                </a>
+                <a class="contact-card" href="https://t.me/cwiwi9" target="_blank" rel="noopener noreferrer">
+                    <span class="contact-key">telegram</span>
+                    <span class="contact-val">@cwiwi9</span>
+                </a>
+                <a class="contact-card" href="https://github.com/n1mfaq" target="_blank" rel="noopener noreferrer">
+                    <span class="contact-key">github</span>
+                    <span class="contact-val">n1mfaq</span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© <span id="year"></span> Sevastiian · made with neon &amp; code</p>
+    </footer>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
