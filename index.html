@@ -57,15 +57,116 @@
 
         <section id="about" class="section" data-reveal>
             <h2 class="section-title"><span class="bracket">[</span> about <span class="bracket">]</span></h2>
-            <div class="card tilt">
-                <p>
-                    Senior Full-Stack engineer focused on <span class="hl">C# / .NET</span>.
-                    I design distributed systems on <span class="hl">Microsoft Orleans</span> and
-                    <span class="hl">.NET Aspire</span>: event-driven backends with MassTransit/NATS,
-                    PostgreSQL + Redis, observability via OpenTelemetry and Sentry.
-                    On the frontend — <span class="hl">React 19</span> with React Router, TanStack Query and Storybook.
-                    From architecture to production deployments on Docker / Kubernetes / Fly.io.
-                </p>
+
+            <div class="about-layout">
+                <div class="card tilt about-intro">
+                    <p>
+                        Senior Full-Stack engineer focused on <span class="hl">C# / .NET</span>.
+                        I design distributed systems on <span class="hl">Microsoft Orleans</span> and
+                        <span class="hl">.NET Aspire</span>: event-driven backends with MassTransit/NATS,
+                        PostgreSQL + Redis, observability via OpenTelemetry and Sentry.
+                        On the frontend — <span class="hl">React 19</span> with React Router, TanStack Query and Storybook.
+                        From architecture to production deployments on Docker / Kubernetes / Fly.io.
+                    </p>
+                </div>
+
+                <div class="about-traits">
+                    <article class="trait-card" style="--delay: 0ms">
+                        <div class="trait-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 2 14.5 9 22 9.5l-6 4.5 2 8L12 17l-6 5 2-8-6-4.5L9.5 9z"/>
+                            </svg>
+                        </div>
+                        <h3>Creative</h3>
+                        <p>I love non-trivial problems and ship elegant solutions where most see dead ends.</p>
+                    </article>
+
+                    <article class="trait-card" style="--delay: 80ms">
+                        <div class="trait-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 12a9 9 0 0 1 15.36-6.36L21 8"/>
+                                <path d="M21 12a9 9 0 0 1-15.36 6.36L3 16"/>
+                                <path d="M21 4v4h-4"/>
+                                <path d="M3 20v-4h4"/>
+                            </svg>
+                        </div>
+                        <h3>Adaptive</h3>
+                        <p>New stack, unfamiliar codebase, last-minute pivot — I switch contexts fast and stay productive.</p>
+                    </article>
+
+                    <article class="trait-card" style="--delay: 160ms">
+                        <div class="trait-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 14l9-5-9-5-9 5 9 5z"/>
+                                <path d="M12 14v8"/>
+                                <path d="M5 11v4l7 4 7-4v-4"/>
+                            </svg>
+                        </div>
+                        <h3>Fast learner</h3>
+                        <p>From zero to production-ready with a new framework in days. Curiosity is my main feature.</p>
+                    </article>
+
+                    <article class="trait-card" style="--delay: 240ms">
+                        <div class="trait-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="4" y="6" width="16" height="12" rx="2"/>
+                                <path d="M8 2v4M16 2v4"/>
+                                <circle cx="9" cy="13" r="1.2"/>
+                                <circle cx="15" cy="13" r="1.2"/>
+                                <path d="M9.5 16h5"/>
+                            </svg>
+                        </div>
+                        <h3>AI-native</h3>
+                        <p>I work daily with LLM agents, MCP, OpenAI &amp; Semantic Kernel — turning prompts into pipelines.</p>
+                    </article>
+
+                    <article class="trait-card" style="--delay: 320ms">
+                        <div class="trait-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 2v3"/>
+                                <path d="M12 19v3"/>
+                                <path d="M4.93 4.93l2.12 2.12"/>
+                                <path d="M16.95 16.95l2.12 2.12"/>
+                                <path d="M2 12h3"/>
+                                <path d="M19 12h3"/>
+                                <path d="M4.93 19.07l2.12-2.12"/>
+                                <path d="M16.95 7.05l2.12-2.12"/>
+                                <circle cx="12" cy="12" r="4"/>
+                            </svg>
+                        </div>
+                        <h3>Tech-curious</h3>
+                        <p>I track new releases, RFCs and weird tools — and bring the useful ones into real projects.</p>
+                    </article>
+
+                    <article class="trait-card" style="--delay: 400ms">
+                        <div class="trait-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                            </svg>
+                        </div>
+                        <h3>Owner</h3>
+                        <p>From idea to production: architecture, code, deploy, observability. I ship and I support.</p>
+                    </article>
+                </div>
+
+                <div class="about-stats">
+                    <div class="stat" data-count="5">
+                        <span class="stat-value" data-target="5" data-suffix="+">0</span>
+                        <span class="stat-label">years in C# / .NET</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value" data-target="40" data-suffix="+">0</span>
+                        <span class="stat-label">production releases</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value" data-target="12" data-suffix="">0</span>
+                        <span class="stat-label">technologies daily</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value" data-target="100" data-suffix="%">0</span>
+                        <span class="stat-label">caffeine-powered</span>
+                    </div>
+                </div>
             </div>
         </section>
 

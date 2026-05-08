@@ -594,6 +594,195 @@ main {
     text-shadow: 0 0 6px rgba(0, 240, 255, 0.6);
 }
 
+/* === ABOUT === */
+.about-layout {
+    display: grid;
+    gap: 22px;
+}
+
+.about-intro {
+    font-size: 16px;
+}
+
+.about-traits {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+}
+
+.trait-card {
+    --tc-color: var(--neon-cyan);
+    position: relative;
+    padding: 22px 22px 20px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: linear-gradient(135deg, rgba(12, 12, 24, 0.85), rgba(20, 12, 36, 0.85));
+    overflow: hidden;
+    transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+                border-color 0.3s ease,
+                box-shadow 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+}
+
+.in-view .trait-card {
+    opacity: 1;
+    transform: none;
+    transition: opacity 0.7s ease var(--delay, 0ms),
+                transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) var(--delay, 0ms),
+                border-color 0.3s ease,
+                box-shadow 0.3s ease;
+}
+
+.trait-card:nth-child(2n) { --tc-color: var(--neon-pink); }
+.trait-card:nth-child(3n) { --tc-color: var(--neon-purple); }
+
+/* animated corner brackets */
+.trait-card::before,
+.trait-card::after {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border: 1.5px solid var(--tc-color);
+    transition: width 0.35s ease, height 0.35s ease, opacity 0.3s ease;
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.trait-card::before {
+    top: 8px;
+    left: 8px;
+    border-right: none;
+    border-bottom: none;
+}
+
+.trait-card::after {
+    bottom: 8px;
+    right: 8px;
+    border-left: none;
+    border-top: none;
+}
+
+.trait-card:hover::before,
+.trait-card:hover::after {
+    width: 28px;
+    height: 28px;
+    opacity: 1;
+    box-shadow: 0 0 8px var(--tc-color);
+}
+
+.trait-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--tc-color);
+    box-shadow: 0 8px 32px rgba(0, 240, 255, 0.18);
+}
+
+.trait-icon {
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    border-radius: 10px;
+    margin-bottom: 14px;
+    color: var(--tc-color);
+    background: radial-gradient(circle at 30% 30%, rgba(0, 240, 255, 0.12), transparent 70%);
+    border: 1px solid color-mix(in srgb, var(--tc-color) 30%, transparent);
+    filter: drop-shadow(0 0 6px color-mix(in srgb, var(--tc-color) 60%, transparent));
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.3s ease;
+}
+
+.trait-card:hover .trait-icon {
+    transform: rotate(-6deg) scale(1.08);
+    filter: drop-shadow(0 0 12px color-mix(in srgb, var(--tc-color) 90%, transparent));
+}
+
+.trait-icon svg {
+    width: 22px;
+    height: 22px;
+}
+
+.trait-card h3 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 16px;
+    letter-spacing: 1.5px;
+    color: #fff;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.trait-card p {
+    color: var(--text-dim);
+    font-size: 14px;
+    line-height: 1.55;
+}
+
+/* shimmer line on hover */
+.trait-card .shimmer {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--tc-color), transparent);
+    box-shadow: 0 0 10px var(--tc-color);
+    transition: left 0.7s ease;
+}
+
+.trait-card:hover .shimmer { left: 160%; }
+
+/* === STATS === */
+.about-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 14px;
+    padding: 22px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: rgba(7, 7, 13, 0.55);
+    position: relative;
+    overflow: hidden;
+}
+
+.about-stats::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        repeating-linear-gradient(0deg, rgba(0, 240, 255, 0.06) 0 1px, transparent 1px 24px),
+        repeating-linear-gradient(90deg, rgba(255, 43, 214, 0.05) 0 1px, transparent 1px 24px);
+    pointer-events: none;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+}
+
+.stat {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.stat-value {
+    display: block;
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--neon-cyan), var(--neon-pink));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 18px rgba(0, 240, 255, 0.25);
+    letter-spacing: 1px;
+}
+
+.stat-label {
+    display: block;
+    font-size: 11px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 4px;
+}
+
 /* === SKILLS === */
 .skill-group {
     font-family: 'JetBrains Mono', monospace;

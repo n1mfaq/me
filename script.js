@@ -118,6 +118,48 @@ document.getElementById('year').textContent = new Date().getFullYear();
     document.querySelectorAll('.skills-grid').forEach((grid) => {
         [...grid.children].forEach((el, i) => el.style.setProperty('--i', i));
     });
+
+    // Inject shimmer line into trait cards
+    document.querySelectorAll('.trait-card').forEach((card) => {
+        const shimmer = document.createElement('span');
+        shimmer.className = 'shimmer';
+        card.appendChild(shimmer);
+    });
+})();
+
+/* === Stats count-up === */
+(() => {
+    const stats = document.querySelectorAll('.stat-value[data-target]');
+    if (!stats.length || !('IntersectionObserver' in window)) {
+        stats.forEach((el) => {
+            el.textContent = el.dataset.target + (el.dataset.suffix || '');
+        });
+        return;
+    }
+    const animate = (el) => {
+        const target = parseFloat(el.dataset.target);
+        const suffix = el.dataset.suffix || '';
+        const duration = 1400;
+        const start = performance.now();
+        const step = (now) => {
+            const t = Math.min(1, (now - start) / duration);
+            const eased = 1 - Math.pow(1 - t, 3);
+            const value = Math.round(target * eased);
+            el.textContent = value + suffix;
+            if (t < 1) requestAnimationFrame(step);
+            else el.textContent = target + suffix;
+        };
+        requestAnimationFrame(step);
+    };
+    const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+            if (e.isIntersecting) {
+                animate(e.target);
+                io.unobserve(e.target);
+            }
+        });
+    }, { threshold: 0.5 });
+    stats.forEach((el) => io.observe(el));
 })();
 
 /* === 3D tilt === */
