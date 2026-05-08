@@ -11,33 +11,53 @@
     <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <canvas id="bg-grid"></canvas>
+    <!-- background layers -->
+    <canvas id="bg-matrix" aria-hidden="true"></canvas>
+    <canvas id="bg-grid" aria-hidden="true"></canvas>
+    <div id="scanlines" aria-hidden="true"></div>
+    <div id="cursor-glow" aria-hidden="true"></div>
+
+    <!-- top scroll progress -->
+    <div id="scroll-progress" aria-hidden="true"></div>
+
+    <!-- boot intro -->
+    <div id="boot" class="boot">
+        <pre id="boot-text"></pre>
+        <div class="boot-cursor">▮</div>
+    </div>
 
     <header class="nav">
-        <div class="logo">&lt;Sevastiian/&gt;</div>
+        <div class="logo">&lt;Sevastiian<span class="caret">/</span>&gt;</div>
         <nav>
-            <a href="#about">about</a>
-            <a href="#skills">skills</a>
-            <a href="#donate">donate</a>
-            <a href="#contact">contact</a>
+            <a href="#about" data-text="about">about</a>
+            <a href="#skills" data-text="skills">skills</a>
+            <a href="#donate" data-text="donate">donate</a>
+            <a href="#contact" data-text="contact">contact</a>
         </nav>
     </header>
 
     <main>
-        <section class="hero">
+        <section class="hero" data-reveal>
             <div class="glitch-wrap">
                 <h1 class="glitch" data-text="SEVASTIIAN">SEVASTIIAN</h1>
             </div>
-            <p class="subtitle">// Senior Full-Stack Developer · C# / .NET stack</p>
+            <p class="subtitle">
+                <span class="prompt">$</span>
+                <span id="subtitle-text"></span><span class="caret blink">▮</span>
+            </p>
             <div class="hero-cta">
-                <a class="btn btn-primary" href="#contact">Get in touch</a>
-                <a class="btn btn-ghost" href="#donate">Support me</a>
+                <a class="btn btn-primary magnetic" href="#contact">Get in touch</a>
+                <a class="btn btn-ghost magnetic" href="#donate">Support me</a>
+            </div>
+            <div class="scroll-hint" aria-hidden="true">
+                <span>scroll</span>
+                <div class="scroll-arrow"></div>
             </div>
         </section>
 
-        <section id="about" class="section">
+        <section id="about" class="section" data-reveal>
             <h2 class="section-title"><span class="bracket">[</span> about <span class="bracket">]</span></h2>
-            <div class="card">
+            <div class="card tilt">
                 <p>
                     Senior Full-Stack engineer focused on <span class="hl">C# / .NET</span>.
                     I design distributed systems on <span class="hl">Microsoft Orleans</span> and
@@ -49,7 +69,7 @@
             </div>
         </section>
 
-        <section id="skills" class="section">
+        <section id="skills" class="section" data-reveal>
             <h2 class="section-title"><span class="bracket">[</span> skills <span class="bracket">]</span></h2>
 
             <h3 class="skill-group">// backend &amp; languages</h3>
@@ -131,11 +151,11 @@
             </div>
         </section>
 
-        <section id="donate" class="section">
+        <section id="donate" class="section" data-reveal>
             <h2 class="section-title"><span class="bracket">[</span> donate <span class="bracket">]</span></h2>
 
             <div class="donate-grid">
-                <div class="card donate">
+                <div class="card donate tilt">
                     <p class="donate-label">USDT · TRC20 (TRON)</p>
                     <div class="wallet">
                         <code id="wallet-usdt" class="wallet-value">TKasX7gvbdvg4nnJ8BzQ2TNWrKjXpieHau</code>
@@ -144,7 +164,7 @@
                     <p class="warn">⚠ Send only USDT on the TRC20 network. Transfers on other networks will be lost.</p>
                 </div>
 
-                <div class="card donate">
+                <div class="card donate tilt">
                     <p class="donate-label">Monobank · Card</p>
                     <div class="wallet">
                         <code id="wallet-mono" class="wallet-value">4874 0700 5607 6688</code>
@@ -155,7 +175,7 @@
             </div>
         </section>
 
-        <section id="contact" class="section">
+        <section id="contact" class="section" data-reveal>
             <h2 class="section-title"><span class="bracket">[</span> contact <span class="bracket">]</span></h2>
             <div class="contacts">
                 <a class="contact-card" href="mailto:katana118841@gmail.com">
