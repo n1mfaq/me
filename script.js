@@ -142,12 +142,12 @@ document.getElementById('year').textContent = new Date().getFullYear();
     const chips = document.querySelectorAll('.skills-cloud .chip');
     if (!tabs.length || !underline) return;
 
+    const parent = tabs[0].parentElement;
+
     const moveUnderline = (tab) => {
-        const parent = tab.parentElement;
-        const r = tab.getBoundingClientRect();
-        const pr = parent.getBoundingClientRect();
-        underline.style.transform = `translateX(${r.left - pr.left - 6 + parent.scrollLeft}px)`;
-        underline.style.width = r.width + 'px';
+        const left = tab.offsetLeft;
+        underline.style.transform = `translateX(${left - 6}px)`;
+        underline.style.width = tab.offsetWidth + 'px';
     };
 
     const apply = (filter) => {
@@ -163,16 +163,23 @@ document.getElementById('year').textContent = new Date().getFullYear();
             tab.classList.add('active');
             moveUnderline(tab);
             apply(tab.dataset.filter);
+            // Scroll active tab into view on narrow screens
+            tab.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
         });
     });
 
-    const initial = document.querySelector('.skills-tabs .tab.active') || tabs[0];
-    // Wait for layout
-    requestAnimationFrame(() => moveUnderline(initial));
-    window.addEventListener('resize', () => {
-        const active = document.querySelector('.skills-tabs .tab.active');
-        if (active) moveUnderline(active);
-    });
+    const refresh = () => {
+        const active = document.querySelector('.skills-tabs .tab.active') || tabs[0];
+        moveUnderline(active);
+    };
+
+    // Initial — wait for fonts so widths are correct
+    if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(refresh);
+    }
+    requestAnimationFrame(refresh);
+    window.addEventListener('resize', refresh);
+    window.addEventListener('orientationchange', refresh);
 })();
 
 /* === Stats count-up === */

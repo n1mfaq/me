@@ -1021,7 +1021,7 @@ main {
 .skills-tabs {
     position: relative;
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 6px;
     padding: 6px;
     margin-bottom: 24px;
@@ -1032,10 +1032,15 @@ main {
     width: fit-content;
     max-width: 100%;
     overflow-x: auto;
+    overflow-y: hidden;
     scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
 }
 
 .skills-tabs::-webkit-scrollbar { display: none; }
+
+.tab { scroll-snap-align: center; }
 
 .tab {
     position: relative;
