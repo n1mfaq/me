@@ -114,8 +114,8 @@ document.getElementById('year').textContent = new Date().getFullYear();
     }, { threshold: 0.12 });
     targets.forEach((t) => io.observe(t));
 
-    // Stagger index for skill chips
-    document.querySelectorAll('.skills-grid').forEach((grid) => {
+    // Stagger index for chips
+    document.querySelectorAll('.skills-cloud').forEach((grid) => {
         [...grid.children].forEach((el, i) => el.style.setProperty('--i', i));
     });
 
@@ -124,6 +124,46 @@ document.getElementById('year').textContent = new Date().getFullYear();
         const shimmer = document.createElement('span');
         shimmer.className = 'shimmer';
         card.appendChild(shimmer);
+    });
+})();
+
+/* === Skills tabs filtering + animated underline === */
+(() => {
+    const tabs = document.querySelectorAll('.skills-tabs .tab');
+    const underline = document.querySelector('.tab-underline');
+    const chips = document.querySelectorAll('.skills-cloud .chip');
+    if (!tabs.length || !underline) return;
+
+    const moveUnderline = (tab) => {
+        const parent = tab.parentElement;
+        const r = tab.getBoundingClientRect();
+        const pr = parent.getBoundingClientRect();
+        underline.style.transform = `translateX(${r.left - pr.left - 6 + parent.scrollLeft}px)`;
+        underline.style.width = r.width + 'px';
+    };
+
+    const apply = (filter) => {
+        chips.forEach((chip) => {
+            const match = filter === 'all' || chip.dataset.cat === filter;
+            chip.classList.toggle('dim', !match);
+        });
+    };
+
+    tabs.forEach((tab) => {
+        tab.addEventListener('click', () => {
+            tabs.forEach((t) => t.classList.remove('active'));
+            tab.classList.add('active');
+            moveUnderline(tab);
+            apply(tab.dataset.filter);
+        });
+    });
+
+    const initial = document.querySelector('.skills-tabs .tab.active') || tabs[0];
+    // Wait for layout
+    requestAnimationFrame(() => moveUnderline(initial));
+    window.addEventListener('resize', () => {
+        const active = document.querySelector('.skills-tabs .tab.active');
+        if (active) moveUnderline(active);
     });
 })();
 
