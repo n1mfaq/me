@@ -1,9 +1,7 @@
 // Year
 document.getElementById('year').textContent = new Date().getFullYear();
 
-// Copy wallet
-const copyBtn = document.getElementById('copy-btn');
-const walletEl = document.getElementById('wallet');
+// Copy wallet / card buttons
 const toast = document.getElementById('toast');
 
 function showToast(msg) {
@@ -12,25 +10,37 @@ function showToast(msg) {
     setTimeout(() => toast.classList.remove('show'), 1800);
 }
 
-copyBtn.addEventListener('click', async () => {
-    const text = walletEl.textContent.trim();
+async function copyText(text) {
     try {
         await navigator.clipboard.writeText(text);
-        showToast('Адрес скопирован');
+        return true;
     } catch {
-        const range = document.createRange();
-        range.selectNode(walletEl);
-        const sel = window.getSelection();
-        sel.removeAllRanges();
-        sel.addRange(range);
         try {
-            document.execCommand('copy');
-            showToast('Адрес скопирован');
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            ta.style.position = 'fixed';
+            ta.style.opacity = '0';
+            document.body.appendChild(ta);
+            ta.select();
+            const ok = document.execCommand('copy');
+            document.body.removeChild(ta);
+            return ok;
         } catch {
-            showToast('Не удалось скопировать');
+            return false;
         }
-        sel.removeAllRanges();
     }
+}
+
+document.querySelectorAll('[data-copy-target]').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+        const target = document.getElementById(btn.dataset.copyTarget);
+        if (!target) return;
+        const raw = target.textContent.trim();
+        // Strip spaces from card numbers when copying
+        const text = /^\d[\d\s]+\d$/.test(raw) ? raw.replace(/\s+/g, '') : raw;
+        const ok = await copyText(text);
+        showToast(ok ? 'Copied to clipboard' : 'Copy failed');
+    });
 });
 
 // Animated cyber-grid background

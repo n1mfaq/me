@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sevastiian — Senior Full-Stack Developer</title>
-    <meta name="description" content="Sevastiian — Senior Full-Stack Developer. C# / .NET стек. Backend, веб-сервисы, высоконагруженные системы." />
+    <meta name="description" content="Sevastiian — Senior Full-Stack Developer. C# / .NET stack. Backend, web services, distributed systems." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
@@ -30,8 +30,8 @@
             </div>
             <p class="subtitle">// Senior Full-Stack Developer · C# / .NET stack</p>
             <div class="hero-cta">
-                <a class="btn btn-primary" href="#contact">Связаться</a>
-                <a class="btn btn-ghost" href="#donate">Поддержать (USDT TRC20)</a>
+                <a class="btn btn-primary" href="#contact">Get in touch</a>
+                <a class="btn btn-ghost" href="#donate">Support me</a>
             </div>
         </section>
 
@@ -39,12 +39,12 @@
             <h2 class="section-title"><span class="bracket">[</span> about <span class="bracket">]</span></h2>
             <div class="card">
                 <p>
-                    Senior Full-Stack разработчик с фокусом на <span class="hl">C# / .NET</span>.
-                    Строю распределённые системы на <span class="hl">Microsoft Orleans</span> и
-                    <span class="hl">.NET Aspire</span>: event-driven backend с MassTransit/NATS,
-                    PostgreSQL + Redis, наблюдаемость через OpenTelemetry и Sentry.
-                    На фронте — <span class="hl">React 19</span> + React Router, TanStack Query, Storybook.
-                    От архитектуры до прод-деплоя в Docker / Kubernetes / Fly.io.
+                    Senior Full-Stack engineer focused on <span class="hl">C# / .NET</span>.
+                    I design distributed systems on <span class="hl">Microsoft Orleans</span> and
+                    <span class="hl">.NET Aspire</span>: event-driven backends with MassTransit/NATS,
+                    PostgreSQL + Redis, observability via OpenTelemetry and Sentry.
+                    On the frontend — <span class="hl">React 19</span> with React Router, TanStack Query and Storybook.
+                    From architecture to production deployments on Docker / Kubernetes / Fly.io.
                 </p>
             </div>
         </section>
@@ -133,13 +133,25 @@
 
         <section id="donate" class="section">
             <h2 class="section-title"><span class="bracket">[</span> donate <span class="bracket">]</span></h2>
-            <div class="card donate">
-                <p class="donate-label">USDT · TRC20 (TRON)</p>
-                <div class="wallet">
-                    <code id="wallet">TKasX7gvbdvg4nnJ8BzQ2TNWrKjXpieHau</code>
-                    <button id="copy-btn" class="btn btn-primary copy" type="button" aria-label="Скопировать адрес">copy</button>
+
+            <div class="donate-grid">
+                <div class="card donate">
+                    <p class="donate-label">USDT · TRC20 (TRON)</p>
+                    <div class="wallet">
+                        <code id="wallet-usdt" class="wallet-value">TKasX7gvbdvg4nnJ8BzQ2TNWrKjXpieHau</code>
+                        <button class="btn btn-primary copy" type="button" data-copy-target="wallet-usdt" aria-label="Copy USDT address">copy</button>
+                    </div>
+                    <p class="warn">⚠ Send only USDT on the TRC20 network. Transfers on other networks will be lost.</p>
                 </div>
-                <p class="warn">⚠ Отправляйте только USDT в сети TRC20. Перевод в другой сети приведёт к потере средств.</p>
+
+                <div class="card donate">
+                    <p class="donate-label">Monobank · Card</p>
+                    <div class="wallet">
+                        <code id="wallet-mono" class="wallet-value">4874 0700 5607 6688</code>
+                        <button class="btn btn-primary copy" type="button" data-copy-target="wallet-mono" aria-label="Copy card number">copy</button>
+                    </div>
+                    <p class="warn">UAH · Visa · Monobank</p>
+                </div>
             </div>
         </section>
 

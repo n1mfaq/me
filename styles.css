@@ -287,6 +287,12 @@ main {
 }
 
 /* === DONATE === */
+.donate-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 18px;
+}
+
 .donate-label {
     font-family: 'Orbitron', sans-serif;
     color: var(--neon-cyan);

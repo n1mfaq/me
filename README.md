@@ -1,31 +1,36 @@
 # Sevastiian — Personal Landing
 
-Личный лендинг Senior Full-Stack Developer (C# / .NET).
-Стиль: неон / киберпанк. Чистый HTML + CSS + JS, без сборщиков.
+Personal landing page for a Senior Full-Stack Developer (C# / .NET).
+Style: neon / cyberpunk. Plain HTML + CSS + JS, no bundlers.
 
-## Запуск
+## Run
 
-Просто открой `index.html` в браузере или запусти любой статический сервер:
+Just open `index.html` in a browser, or serve with any static server:
 
 ```bash
 npx serve .
 ```
 
-## Структура
+## Structure
 
-- `index.html` — разметка
-- `styles.css` — стили (неон, glitch-текст, перспективная сетка)
-- `script.js` — копирование адреса, анимация фона
+- `index.html` — markup
+- `styles.css` — styles (neon, glitch text, perspective grid)
+- `script.js` — copy-to-clipboard, animated background
 
-## Donate (USDT TRC20)
+## Donate
 
+**USDT · TRC20 (TRON)**
 ```
 TKasX7gvbdvg4nnJ8BzQ2TNWrKjXpieHau
 ```
+> Send only on the **TRC20 (TRON)** network. Transfers on other networks will be lost.
 
-> Только сеть **TRC20 (TRON)**. Перевод в другой сети приведёт к потере средств.
+**Monobank**
+```
+4874 0700 5607 6688
+```
 
-## Контакты
+## Contacts
 
 - Email: katana118841@gmail.com
 - Telegram: [@cwiwi9](https://t.me/cwiwi9)
