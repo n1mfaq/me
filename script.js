@@ -4,6 +4,17 @@
 
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+// Always start at top on page load (disable browser scroll restoration)
+if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+}
+window.addEventListener('beforeunload', () => window.scrollTo(0, 0));
+// Strip any hash so anchor doesn't auto-scroll (e.g. #skills)
+if (location.hash) {
+    history.replaceState(null, '', location.pathname + location.search);
+}
+window.scrollTo(0, 0);
+
 // Year
 document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -18,11 +29,13 @@ document.getElementById('year').textContent = new Date().getFullYear();
         return;
     }
 
+    document.documentElement.classList.add('booting');
     document.body.classList.add('booting');
     window.scrollTo(0, 0);
 
     const finish = () => {
         boot.classList.add('done');
+        document.documentElement.classList.remove('booting');
         document.body.classList.remove('booting');
     };
 
