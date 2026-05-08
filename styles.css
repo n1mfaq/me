@@ -111,6 +111,11 @@ body.cursor-active #cursor-glow {
     transition: width 0.05s linear;
 }
 
+/* Lock scroll while boot is active */
+body.booting {
+    overflow: hidden;
+}
+
 /* Boot intro */
 .boot {
     position: fixed;

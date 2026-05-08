@@ -18,6 +18,14 @@ document.getElementById('year').textContent = new Date().getFullYear();
         return;
     }
 
+    document.body.classList.add('booting');
+    window.scrollTo(0, 0);
+
+    const finish = () => {
+        boot.classList.add('done');
+        document.body.classList.remove('booting');
+    };
+
     const lines = [
         '> booting sevastiian.os v9.2 ...',
         '> loading kernel modules ............ [ ok ]',
@@ -30,7 +38,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
     let li = 0, ci = 0;
     const tick = () => {
         if (li >= lines.length) {
-            setTimeout(() => boot.classList.add('done'), 280);
+            setTimeout(finish, 280);
             return;
         }
         target.textContent += lines[li][ci] ?? '';
