@@ -231,16 +231,43 @@ document.getElementById('year').textContent = new Date().getFullYear();
 /* === Magnetic buttons === */
 (() => {
     if (prefersReducedMotion) return;
+    if (window.matchMedia('(pointer: coarse)').matches) return;
+
     document.querySelectorAll('.magnetic').forEach((btn) => {
-        const strength = 0.35;
-        btn.addEventListener('mousemove', (e) => {
+        const strength = 0.18;
+        const maxOffset = 8;
+        let raf = 0;
+        let active = false;
+        let tx = 0, ty = 0, cx = 0, cy = 0;
+
+        const tick = () => {
+            cx += (tx - cx) * 0.18;
+            cy += (ty - cy) * 0.18;
+            btn.style.transform = `translate(${cx.toFixed(2)}px, ${cy.toFixed(2)}px)`;
+            if (Math.abs(tx - cx) > 0.05 || Math.abs(ty - cy) > 0.05 || active) {
+                raf = requestAnimationFrame(tick);
+            } else {
+                btn.style.transform = '';
+                raf = 0;
+            }
+        };
+
+        btn.addEventListener('pointerenter', () => { active = true; });
+
+        btn.addEventListener('pointermove', (e) => {
             const r = btn.getBoundingClientRect();
-            const x = e.clientX - (r.left + r.width / 2);
-            const y = e.clientY - (r.top + r.height / 2);
-            btn.style.transform = `translate(${x * strength}px, ${y * strength}px)`;
+            const dx = e.clientX - (r.left + r.width / 2);
+            const dy = e.clientY - (r.top + r.height / 2);
+            tx = Math.max(-maxOffset, Math.min(maxOffset, dx * strength));
+            ty = Math.max(-maxOffset, Math.min(maxOffset, dy * strength));
+            if (!raf) raf = requestAnimationFrame(tick);
         });
-        btn.addEventListener('mouseleave', () => {
-            btn.style.transform = '';
+
+        btn.addEventListener('pointerleave', () => {
+            active = false;
+            tx = 0;
+            ty = 0;
+            if (!raf) raf = requestAnimationFrame(tick);
         });
     });
 })();
