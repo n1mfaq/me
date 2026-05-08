@@ -237,6 +237,201 @@ main {
     padding: 80px 0 100px;
 }
 
+/* === AVATAR === */
+.avatar-wrap {
+    position: relative;
+    width: clamp(180px, 22vw, 240px);
+    height: clamp(180px, 22vw, 240px);
+    margin: 0 auto 36px;
+    transform: translateY(0);
+    animation: float-y 6s ease-in-out infinite;
+}
+
+.avatar-ring {
+    position: absolute;
+    inset: -10px;
+    border-radius: 50%;
+    background: conic-gradient(from var(--ring-angle, 0deg),
+        var(--neon-cyan) 0deg,
+        transparent 70deg,
+        var(--neon-pink) 140deg,
+        transparent 210deg,
+        var(--neon-purple) 280deg,
+        var(--neon-cyan) 360deg);
+    filter: blur(2px);
+    animation: spin-ring 6s linear infinite;
+    opacity: 0.85;
+}
+
+.avatar-ring::after {
+    content: '';
+    position: absolute;
+    inset: 8px;
+    border-radius: 50%;
+    background: var(--bg);
+}
+
+@property --ring-angle {
+    syntax: '<angle>';
+    inherits: false;
+    initial-value: 0deg;
+}
+
+@keyframes spin-ring {
+    to { --ring-angle: 360deg; }
+}
+
+.avatar-frame {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 1px solid rgba(0, 240, 255, 0.4);
+    box-shadow:
+        0 0 30px rgba(0, 240, 255, 0.4),
+        0 0 60px rgba(255, 43, 214, 0.25),
+        inset 0 0 20px rgba(0, 240, 255, 0.15);
+    cursor: pointer;
+    isolation: isolate;
+}
+
+.avatar-img,
+.avatar-glitch {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-size: cover;
+    background-position: center;
+    filter: contrast(1.05) saturate(1.05);
+    transition: filter 0.4s ease, transform 0.6s ease;
+}
+
+.avatar-img {
+    z-index: 1;
+}
+
+/* Chromatic aberration layers */
+.avatar-glitch {
+    z-index: 2;
+    mix-blend-mode: screen;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.avatar-glitch:not(.g2) {
+    filter: hue-rotate(330deg) saturate(2);
+}
+.avatar-glitch.g2 {
+    filter: hue-rotate(180deg) saturate(2);
+}
+
+.avatar-frame:hover .avatar-img {
+    filter: contrast(1.15) saturate(1.2) brightness(1.05);
+    transform: scale(1.04);
+}
+
+.avatar-frame:hover .avatar-glitch {
+    opacity: 0.55;
+    animation: avatar-glitch-x 0.5s steps(6) infinite;
+}
+
+.avatar-frame:hover .avatar-glitch.g2 {
+    animation: avatar-glitch-x 0.6s steps(6) infinite reverse;
+}
+
+@keyframes avatar-glitch-x {
+    0%   { transform: translate(2px, 0); clip-path: inset(0 0 70% 0); }
+    20%  { transform: translate(-3px, 1px); clip-path: inset(40% 0 30% 0); }
+    40%  { transform: translate(3px, -1px); clip-path: inset(60% 0 10% 0); }
+    60%  { transform: translate(-2px, 0); clip-path: inset(15% 0 55% 0); }
+    80%  { transform: translate(2px, 1px); clip-path: inset(75% 0 5% 0); }
+    100% { transform: translate(0, 0); clip-path: inset(0 0 70% 0); }
+}
+
+/* Scanlines overlay */
+.avatar-scan {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+    background:
+        repeating-linear-gradient(to bottom,
+            rgba(0, 240, 255, 0.05) 0,
+            rgba(0, 240, 255, 0.05) 1px,
+            transparent 1px,
+            transparent 3px);
+    mix-blend-mode: overlay;
+}
+
+.avatar-scan::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 30%;
+    background: linear-gradient(to bottom, transparent, rgba(0, 240, 255, 0.2), transparent);
+    animation: scan-sweep 3.5s linear infinite;
+}
+
+@keyframes scan-sweep {
+    from { top: -30%; }
+    to   { top: 100%; }
+}
+
+/* HUD label */
+.avatar-hud {
+    position: absolute;
+    z-index: 4;
+    bottom: 14%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border: 1px solid rgba(255, 43, 214, 0.5);
+    background: rgba(7, 7, 13, 0.6);
+    border-radius: 12px;
+    backdrop-filter: blur(4px);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--neon-pink);
+    text-shadow: 0 0 6px var(--neon-pink);
+    pointer-events: none;
+    opacity: 0.85;
+}
+
+.hud-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--neon-pink);
+    box-shadow: 0 0 8px var(--neon-pink);
+    animation: blink 1.2s infinite steps(2);
+}
+
+/* Animated corner brackets */
+.avatar-corner {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 1.5px solid var(--neon-cyan);
+    z-index: 5;
+    box-shadow: 0 0 6px rgba(0, 240, 255, 0.6);
+    transition: width 0.4s ease, height 0.4s ease;
+}
+
+.avatar-corner.tl { top: -6px; left: -6px;  border-right: none; border-bottom: none; }
+.avatar-corner.tr { top: -6px; right: -6px; border-left: none;  border-bottom: none; }
+.avatar-corner.bl { bottom: -6px; left: -6px; border-right: none; border-top: none; }
+.avatar-corner.br { bottom: -6px; right: -6px; border-left: none;  border-top: none; }
+
+.avatar-wrap:hover .avatar-corner { width: 30px; height: 30px; }
+
 .glitch-wrap {
     display: inline-block;
     position: relative;
