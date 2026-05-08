@@ -145,8 +145,8 @@ document.getElementById('year').textContent = new Date().getFullYear();
     const parent = tabs[0].parentElement;
 
     const moveUnderline = (tab) => {
-        const left = tab.offsetLeft;
-        underline.style.transform = `translateX(${left - 6}px)`;
+        const padLeft = parseFloat(getComputedStyle(parent).paddingLeft) || 0;
+        underline.style.transform = `translateX(${tab.offsetLeft - padLeft}px)`;
         underline.style.width = tab.offsetWidth + 'px';
     };
 

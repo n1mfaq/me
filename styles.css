@@ -1454,6 +1454,26 @@ footer {
     #cursor-glow { display: none; }
     .scroll-hint { display: none; }
     .donate-card, .contact-card { padding: 16px; }
+
+    /* Skills tabs — fit width, no wrap, horizontal scroll */
+    .skills-tabs {
+        width: 100%;
+        max-width: 100%;
+        flex-wrap: nowrap !important;
+        overflow-x: auto;
+        padding: 4px;
+    }
+    .tab {
+        padding: 7px 12px;
+        font-size: 12px;
+    }
+    .tab-underline {
+        top: 4px;
+        left: 4px;
+        height: calc(100% - 8px);
+    }
+    .skills-cloud { gap: 8px; }
+    .chip { padding: 8px 12px; font-size: 12px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
